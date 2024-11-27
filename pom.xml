@@ -163,11 +163,11 @@
 			<artifactId>org.egovframe.rte.fdl.crypto</artifactId>
 			<version>${org.egovframe.rte.version}</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
     		<groupId>org.egovframe.rte</groupId>
     		<artifactId>org.egovframe.rte.fdl.security</artifactId>
     		<version>${org.egovframe.rte.version}</version>
-		</dependency> -->
+		</dependency>
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>
