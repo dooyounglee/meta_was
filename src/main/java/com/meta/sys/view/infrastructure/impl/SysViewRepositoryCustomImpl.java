@@ -1,7 +1,6 @@
 package com.meta.sys.view.infrastructure.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 
 import com.meta.cmm.dto.SearchDto;
-import com.meta.sys.view.domain.View;
 import com.meta.sys.view.infrastructure.SysViewRepositoryCustom;
 import com.meta.sys.view.infrastructure.entity.QViewEntity;
 import com.meta.sys.view.infrastructure.entity.ViewEntity;
@@ -28,19 +26,15 @@ public class SysViewRepositoryCustomImpl implements SysViewRepositoryCustom {
     QViewEntity view = QViewEntity.viewEntity;
 	
 	@Override
-	public Page<View> selectViewList(SearchDto searchDto, Pageable pageable) {
+	public Page<ViewEntity> selectViewList(SearchDto searchDto, Pageable pageable) {
 		
-		List<ViewEntity> viewList = queryFactory
+		List<ViewEntity> content = queryFactory
 				.selectFrom(view)
 				.where(setSearchCondition(searchDto))
 				.orderBy(view.viewId.asc())
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
 				.fetch();
-		
-		List<View> content = viewList.stream()
-    			.map(ViewEntity::to)
-    			.collect(Collectors.toList());
 		
 		JPAQuery<Long> countQuery = queryFactory
 				.select(view.count())
@@ -51,14 +45,13 @@ public class SysViewRepositoryCustomImpl implements SysViewRepositoryCustom {
 	}
 	
 	@Override
-	public List<View> searchViewList(SearchDto searchDto) {
-		List<View> list = queryFactory.
+	public List<ViewEntity> searchViewList(SearchDto searchDto) {
+		List<ViewEntity> list = queryFactory.
 				selectFrom(view)
 				.where(view.useYn.eq("Y"),
 						setSearchCondition(searchDto)
 						)
-				.fetch()
-                .stream().map(ViewEntity::to).collect(Collectors.toList());
+				.fetch();
 		
 		return list;
 	}

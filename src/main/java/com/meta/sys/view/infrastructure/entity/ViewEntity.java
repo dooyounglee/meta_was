@@ -47,4 +47,15 @@ public class ViewEntity extends BaseEntity {
             .useYn(useYn)
             .build();
     }
+
+    public static ViewEntity from(View view) {
+        return ViewEntity.builder()
+            .viewNo(view.getViewNo())
+            .viewId(view.getViewId())
+            .viewNm(view.getViewNm())
+            .viewDsc(view.getViewDsc())
+            .viewPath(view.getViewPath())
+            .useYn(view.getUseYn())
+            .build();
+    }
 }

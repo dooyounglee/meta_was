@@ -11,14 +11,18 @@ import com.querydsl.core.BooleanBuilder;
 
 public interface SysMessageRepository {
     
-    Page<Message> findAll(BooleanBuilder booleanBuilder, Pageable pageable);
+    /* Query Method */
     List<Message> findAllByOrderByMsgId();
     List<Message> findAllByDelYnOrderByMsgCd(String delYn);
     Optional<Message> findAllByMsgCd(String msgCd);
     Message findByMsgCdAndLocale(String messageCd, String locale);
     Optional<Message> findByMsgCd(String msgCd);
-
+    
+    /* Query Dsl */
+    
+    /* JpaRepository */
     List<Message> findAll();
+    Page<Message> findAll(BooleanBuilder booleanBuilder, Pageable pageable);
     Optional<Message> findById(long msgId);
     Message save(Message message);
 }
