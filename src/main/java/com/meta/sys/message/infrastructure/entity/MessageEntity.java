@@ -52,4 +52,14 @@ public class MessageEntity extends BaseEntity {
             .delYn(delYn)
             .build();
     }
+
+    public static MessageEntity from(Message message) {
+        return MessageEntity.builder()
+            .msgId(message.getMsgId())
+            .msgCd(message.getMsgCd())
+            .msgCn(message.getMsgCn())
+            .locale(message.getLocale())
+            .delYn(message.getDelYn())
+            .build();
+    }
 }
