@@ -22,6 +22,7 @@ public interface SysViewRepository {
     List<View> searchViewList(SearchDto dto);
     
 	/* JpaRepository */
-	View save(View view);
     Optional<View> findById(Long viewNo);
+	View save(View view);
+    View getOne(Long viewNo);
 }

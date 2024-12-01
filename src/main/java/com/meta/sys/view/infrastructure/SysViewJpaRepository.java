@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.meta.sys.view.infrastructure.entity.ViewEntity;
 
 @Repository
-public interface SysViewJpaRepository extends JpaRepository<ViewEntity, Long>, SysViewRepositoryCustom {
+public interface SysViewJpaRepository extends JpaRepository<ViewEntity, Long> {
 
 	List<ViewEntity> findByUseYn(String useYn);
 	Long countByViewPath(String viewPath);

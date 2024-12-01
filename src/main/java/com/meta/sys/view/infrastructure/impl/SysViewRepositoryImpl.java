@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.view.domain.View;
 import com.meta.sys.view.infrastructure.SysViewJpaRepository;
+import com.meta.sys.view.infrastructure.SysViewRepositoryCustom;
 import com.meta.sys.view.infrastructure.entity.ViewEntity;
 import com.meta.sys.view.service.port.SysViewRepository;
 
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class SysViewRepositoryImpl implements SysViewRepository {
 
     private final SysViewJpaRepository sysViewJpaRepository;
+    private final SysViewRepositoryCustom sysViewRepositoryCustom;
 
     @Override
     public List<View> findByUseYn(String useYn) {
@@ -32,13 +34,13 @@ public class SysViewRepositoryImpl implements SysViewRepository {
 
     @Override
     public Page<View> selectViewList(SearchDto searchDto, Pageable pageable) {
-        return sysViewJpaRepository.selectViewList(searchDto, pageable)
+        return sysViewRepositoryCustom.selectViewList(searchDto, pageable)
             .map(ViewEntity::to);
     }
 
     @Override
     public List<View> searchViewList(SearchDto dto) {
-        return sysViewJpaRepository.searchViewList(dto)
+        return sysViewRepositoryCustom.searchViewList(dto)
             .stream().map(ViewEntity::to).toList();
     }
 
@@ -50,6 +52,11 @@ public class SysViewRepositoryImpl implements SysViewRepository {
     @Override
     public Optional<View> findById(Long viewNo) {
         return sysViewJpaRepository.findById(viewNo).map(ViewEntity::to);
+    }
+
+    @Override
+    public View getOne(Long viewNo) {
+        return sysViewJpaRepository.getOne(viewNo).to();
     }
     
 }
