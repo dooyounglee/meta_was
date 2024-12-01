@@ -15,4 +15,8 @@ public class SearchDto {
 	
 	private String searchTyp;
 	private String searchWrd;
+	private int pageIndex;
+    private int pageSize;
+	private String useYn;
+	private String delYn;
 }
