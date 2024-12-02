@@ -9,20 +9,20 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.stereotype.Component;
 
 import com.meta.sys.message.domain.Message;
 import com.meta.sys.message.service.port.SysMessageRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Component("messageSource")
+@RequiredArgsConstructor
 public class CustomMessageSource extends AbstractMessageSource {
     
     private Map<String, MessageFormat> messageMap = new HashMap<>();
-	
-	@Autowired
-	private SysMessageRepository sysMessageRepository;
+	private final SysMessageRepository sysMessageRepository;
 	
 	@Override
 	protected MessageFormat resolveCode(String code, Locale locale) {
