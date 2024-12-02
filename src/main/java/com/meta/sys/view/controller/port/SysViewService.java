@@ -13,6 +13,7 @@ import com.meta.sys.view.domain.View;
 
 public interface SysViewService {
     
+    public View getView(long viewNo);
     public Page<View> selectViewList(SearchDto searchDto, Pageable pageable);
     public List<View> searchViewList(SearchDto dto);
     public View insertView(ViewCreate viewCreateDto);

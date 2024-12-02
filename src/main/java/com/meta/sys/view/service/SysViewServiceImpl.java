@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.cmm.exception.BusinessException;
+import com.meta.sys.view.controller.port.SysViewService;
 import com.meta.sys.view.controller.request.ViewRequest.ViewCreate;
 import com.meta.sys.view.controller.request.ViewRequest.ViewUpdate;
 import com.meta.sys.view.controller.response.ViewResponse;
@@ -21,9 +22,14 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SysViewServiceImpl {
+public class SysViewServiceImpl implements SysViewService {
 
 	private final SysViewRepository sysViewRepository;
+
+	public View getView(long viewNo) {
+		return sysViewRepository.findById(viewNo)
+			.orElseThrow(() -> new BusinessException("SYS-005")); // 선택된 화면이 없습니다.
+	}
 
 	public Page<View> selectViewList(SearchDto searchDto, Pageable pageable) {
 		Page<View> list = sysViewRepository.selectViewList(searchDto, pageable);

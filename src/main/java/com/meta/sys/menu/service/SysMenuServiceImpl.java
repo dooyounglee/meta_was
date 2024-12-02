@@ -16,8 +16,8 @@ import com.meta.sys.menu.controller.request.SysMenuRequest.MenuSelect;
 import com.meta.sys.menu.controller.request.SysMenuRequest.MenuUpdate;
 import com.meta.sys.menu.domain.Menu;
 import com.meta.sys.menu.service.port.SysMenuRepository;
+import com.meta.sys.view.controller.port.SysViewService;
 import com.meta.sys.view.domain.View;
-import com.meta.sys.view.service.port.SysViewRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class SysMenuServiceImpl implements SysMenuService {
     
     private final SysMenuRepository sysMenuRepository;
-    private final SysViewRepository sysViewRepository;
+	private final SysViewService sysViewService;
     
     public Page<Menu> selectMenuList(SearchDto searchDto, Pageable pageable) {
     	return sysMenuRepository.selectMenuList(searchDto, pageable);
@@ -41,7 +41,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	public Menu insertMenu(@Valid MenuCreate menuCreate) {
 		
 		Menu menu = menuCreate.to();
-		View view = sysViewRepository.getOne(menuCreate.getViewNo());
+		View view = sysViewService.getView(menuCreate.getViewNo());
 		Menu parentMenu = null;
 		
 		if(menuCreate.getParentMenuId() != null && menuCreate.getMenuLevel() > 1 ) {
@@ -60,7 +60,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		Menu menu = sysMenuRepository.findById(menuUpdate.getMenuId())
 			.orElseThrow(() -> new BusinessException("SYS-012")); // 해당 메뉴가 존재하지 않습니다.
 		 
-		View view = sysViewRepository.getOne(menuUpdate.getViewNo());
+		View view = sysViewService.getView(menuUpdate.getViewNo());
 		Menu parentMenu = null;
 		 
 		if(menuUpdate.getParentMenuId() != null && menuUpdate.getMenuLevel() > 1 ) {
