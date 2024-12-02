@@ -2,6 +2,8 @@ package com.meta.usr.user.infrastructure.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.meta.cmm.dto.SearchDto;
 import com.meta.usr.user.infrastructure.UsrUserRepositoryCustom;
 import com.meta.usr.user.infrastructure.entity.QUserEntity;
@@ -12,6 +14,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class UsrUserRepositoryCustomImpl implements UsrUserRepositoryCustom {
     

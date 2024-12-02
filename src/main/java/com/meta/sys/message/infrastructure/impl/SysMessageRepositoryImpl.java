@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.meta.sys.message.domain.Message;
 import com.meta.sys.message.infrastructure.SysMessageJpaRepository;
@@ -14,6 +15,7 @@ import com.querydsl.core.BooleanBuilder;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class SysMessageRepositoryImpl implements SysMessageRepository {
     
@@ -21,7 +23,8 @@ public class SysMessageRepositoryImpl implements SysMessageRepository {
 
     @Override
     public Page<Message> findAll(BooleanBuilder booleanBuilder, Pageable pageable) {
-        return sysMessageJpaRepository.findAll(booleanBuilder, pageable);
+        return sysMessageJpaRepository.findAll(booleanBuilder, pageable)
+            .map(MessageEntity::to);
     }
 
     @Override

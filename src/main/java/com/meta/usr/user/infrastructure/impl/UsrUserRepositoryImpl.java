@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.usr.user.domain.User;
@@ -15,6 +16,7 @@ import com.querydsl.core.BooleanBuilder;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class UsrUserRepositoryImpl implements UsrUserRepository {
 

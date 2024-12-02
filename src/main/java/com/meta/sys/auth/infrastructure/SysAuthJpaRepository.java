@@ -11,7 +11,7 @@ import com.meta.sys.auth.infrastructure.entity.AuthEntity;
 @Repository
 public interface SysAuthJpaRepository extends JpaRepository<AuthEntity, Long> {
 
-	@Query("select distinct cd from Auth cd")
+	@Query("select distinct cd from AuthEntity cd")
 	// List<AuthEntity> selectAllAuthFetch();
     Optional<AuthEntity> findByAuthCd(String authCd);
 }

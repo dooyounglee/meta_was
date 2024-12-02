@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.auth.domain.Auth;
@@ -14,6 +15,7 @@ import com.meta.sys.auth.service.port.SysAuthRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class SysAuthRepositoryImpl implements SysAuthRepository {
 

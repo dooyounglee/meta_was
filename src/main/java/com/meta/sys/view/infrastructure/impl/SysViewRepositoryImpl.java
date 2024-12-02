@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.view.domain.View;
@@ -15,6 +16,7 @@ import com.meta.sys.view.service.port.SysViewRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class SysViewRepositoryImpl implements SysViewRepository {
 
@@ -55,6 +57,7 @@ public class SysViewRepositoryImpl implements SysViewRepository {
     }
 
     @Override
+    @Deprecated
     public View getOne(Long viewNo) {
         return sysViewJpaRepository.getOne(viewNo).to();
     }

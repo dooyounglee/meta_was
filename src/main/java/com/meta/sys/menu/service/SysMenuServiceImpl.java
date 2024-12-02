@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.cmm.exception.BusinessException;
+import com.meta.sys.menu.controller.port.SysMenuService;
 import com.meta.sys.menu.controller.request.SysMenuRequest.MenuCreate;
 import com.meta.sys.menu.controller.request.SysMenuRequest.MenuSelect;
 import com.meta.sys.menu.controller.request.SysMenuRequest.MenuUpdate;
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SysMenuServiceImpl {
+public class SysMenuServiceImpl implements SysMenuService {
     
     private final SysMenuRepository sysMenuRepository;
     private final SysViewRepository sysViewRepository;

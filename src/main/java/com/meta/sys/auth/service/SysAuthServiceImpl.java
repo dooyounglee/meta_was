@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.cmm.exception.BusinessException;
+import com.meta.sys.auth.controller.port.SysAuthService;
 import com.meta.sys.auth.controller.request.AuthRequest.AuthCreate;
 import com.meta.sys.auth.controller.request.AuthRequest.AuthSetting;
 import com.meta.sys.auth.controller.request.AuthRequest.AuthUpdate;
@@ -24,13 +25,13 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SysAuthServiceImpl {
+public class SysAuthServiceImpl implements SysAuthService {
     
-    public final SysAuthRepository sysAuthRepository;
-	public final SysAuthMenuRepository sysAuthMenuRepository;
-	public final SysAuthUserRepository sysAuthUserRepository;
-	public final UsrUserService usrUserService;
-	public final UsrUserRepository usrUserRepository;
+    private final SysAuthRepository sysAuthRepository;
+	private final SysAuthMenuRepository sysAuthMenuRepository;
+	private final SysAuthUserRepository sysAuthUserRepository;
+	private final UsrUserService usrUserService;
+	private final UsrUserRepository usrUserRepository;
     
     public Auth getById(Long authId) {
 		return sysAuthRepository.findById(authId)

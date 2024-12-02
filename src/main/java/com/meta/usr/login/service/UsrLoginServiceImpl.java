@@ -14,6 +14,7 @@ import com.meta.cmm.exception.BusinessException;
 import com.meta.cmm.security.JwtTokenProvider;
 import com.meta.sys.menu.service.port.SysMenuRepository;
 import com.meta.sys.view.controller.port.SysViewService;
+import com.meta.usr.login.controller.port.UsrLoginService;
 import com.meta.usr.login.controller.request.UsrLoginRequest.UsrLoginLogin;
 import com.meta.usr.login.domain.RefreshToken;
 // import com.meta.usr.login.dto.TokenDto;
@@ -28,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UsrLoginServiceImpl {
+public class UsrLoginServiceImpl implements UsrLoginService {
     
     public final UsrUserRepository usrUserRepository;
     public final UsrLoginRefreshTokenRepository usrLoginRefreshTokenRepository;

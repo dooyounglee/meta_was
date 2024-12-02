@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
+import org.springframework.stereotype.Repository;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.view.infrastructure.SysViewRepositoryCustom;
@@ -17,7 +18,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
-
+@Repository
 @RequiredArgsConstructor
 public class SysViewRepositoryCustomImpl implements SysViewRepositoryCustom {
 

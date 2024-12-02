@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.meta.cmm.dto.ResponseDto;
 import com.meta.cmm.exception.BusinessException;
 import com.meta.usr.login.controller.port.UsrLoginService;
-import com.meta.usr.login.controller.request.UsrLoginRequest;
+import com.meta.usr.login.controller.request.UsrLoginRequest.UsrLoginLogin;
 import com.meta.usr.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class UsrLoginController {
     private final UsrLoginService UsrLoginService;
 	
 	@PostMapping(value = "/signin")
-    public ResponseDto signIn(@RequestBody UsrLoginRequest loginDto) throws BusinessException {
+    public ResponseDto signIn(@RequestBody UsrLoginLogin loginDto) throws BusinessException {
         Map<String, Object> responseMap = UsrLoginService.signIn(loginDto);
         
         ResponseDto responseDto = ResponseDto.builder()

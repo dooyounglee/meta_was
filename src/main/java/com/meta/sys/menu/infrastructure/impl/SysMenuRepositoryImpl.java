@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.menu.controller.request.SysMenuRequest.MenuSelect;
@@ -17,6 +18,7 @@ import com.meta.sys.menu.service.port.SysMenuRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class SysMenuRepositoryImpl implements SysMenuRepository {
 
