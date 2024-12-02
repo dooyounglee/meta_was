@@ -31,10 +31,8 @@ public class SysMessageServiceImpl implements SysMessageService {
     }
 
     public Page<Message> list(MessageSelect dto) {
-
         Pageable pageable = PageRequest.of(dto.getOffset(), dto.getPageSize(), Sort.by("msgCd").ascending());
         BooleanBuilder booleanBuilder = getSearch(dto);
-
         return sysMessageRepository.findAll(booleanBuilder, pageable);
     }
 
