@@ -55,11 +55,6 @@ public class SysMenuRepositoryImpl implements SysMenuRepository {
     }
 
     @Override
-    public Menu getOne(Long parentMenuId) {
-        return sysMenuJpaRepository.getOne(parentMenuId).to();
-    }
-
-    @Override
     public Menu save(Menu menu) {
         return sysMenuJpaRepository.save(MenuEntity.from(menu)).to();
     }

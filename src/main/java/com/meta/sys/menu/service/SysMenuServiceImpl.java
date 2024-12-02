@@ -29,6 +29,11 @@ public class SysMenuServiceImpl implements SysMenuService {
     private final SysMenuRepository sysMenuRepository;
 	private final SysViewService sysViewService;
     
+	public Menu getMenu(long menuId) {
+		return sysMenuRepository.findById(menuId)
+			.orElseThrow(() -> new BusinessException("SYS-012")); // 해당 메뉴가 존재하지 않습니다.
+	}
+
     public Page<Menu> selectMenuList(SearchDto searchDto, Pageable pageable) {
     	return sysMenuRepository.selectMenuList(searchDto, pageable);
 	}
@@ -45,7 +50,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		Menu parentMenu = null;
 		
 		if(menuCreate.getParentMenuId() != null && menuCreate.getMenuLevel() > 1 ) {
-			parentMenu = sysMenuRepository.getOne(menuCreate.getParentMenuId());
+			parentMenu = getMenu(menuCreate.getParentMenuId());
 		}
 		
 		menu.setView(view);
@@ -57,14 +62,13 @@ public class SysMenuServiceImpl implements SysMenuService {
 
 	public Menu updateMenu(@Valid MenuUpdate menuUpdate)  {
 
-		Menu menu = sysMenuRepository.findById(menuUpdate.getMenuId())
-			.orElseThrow(() -> new BusinessException("SYS-012")); // 해당 메뉴가 존재하지 않습니다.
+		Menu menu = getMenu(menuUpdate.getMenuId());
 		 
 		View view = sysViewService.getView(menuUpdate.getViewNo());
 		Menu parentMenu = null;
 		 
 		if(menuUpdate.getParentMenuId() != null && menuUpdate.getMenuLevel() > 1 ) {
-			parentMenu = sysMenuRepository.getOne(menuUpdate.getParentMenuId());
+			parentMenu = getMenu(menuUpdate.getParentMenuId());
 		}
 		
 		menu.setView(view);
@@ -73,11 +77,8 @@ public class SysMenuServiceImpl implements SysMenuService {
 		 
 		return menu;
 	}
-
-
     
     public List<Menu> searchMenuList(MenuSelect dto) {
     	return sysMenuRepository.searchMenuList(dto);
 	}
-
 }

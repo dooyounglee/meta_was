@@ -23,6 +23,5 @@ public interface SysMenuRepository {
 
     /* JpaRepository */
     Optional<Menu> findById(Long menuId);
-    Menu getOne(Long parentMenuId);
     Menu save(Menu menu);
 }
