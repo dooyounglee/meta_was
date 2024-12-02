@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
-    @Value("${springboot.jwt.secret}")
+    @Value("${Globals.jwt.secret}")
     private String secretKey;
     private final long tokenValidMillisecond = 1000L * 60 * 60 * 1; // 1시간 토큰 유효
     private final long refreshTokenValidMillisecond = 1000L * 60 * 60 * 24; // 24시간 토큰 유효
