@@ -11,7 +11,6 @@ import com.meta.cmm.dto.ResponseDto;
 import com.meta.cmm.exception.BusinessException;
 import com.meta.usr.login.controller.port.UsrLoginService;
 import com.meta.usr.login.controller.request.UsrLoginRequest.UsrLoginLogin;
-import com.meta.usr.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -51,8 +50,8 @@ public class UsrLoginController {
 
 
     @PostMapping(value = "/signin/test")
-    public ResponseDto signIntest(@RequestBody User user) throws BusinessException {
-        Map<String, Object> responseMap = UsrLoginService.signIntest(user);
+    public ResponseDto signIntest(@RequestBody UsrLoginLogin loginDto) throws BusinessException {
+        Map<String, Object> responseMap = UsrLoginService.signIntest(loginDto);
         
         ResponseDto responseDto = ResponseDto.builder()
         		.data(responseMap)

@@ -131,14 +131,13 @@ public class UsrLoginServiceImpl implements UsrLoginService {
 
 
 
-    public Map<String, Object> signIntest(User user) {
+    public Map<String, Object> signIntest(UsrLoginLogin dto) {
         
         // 없으면 만들기
         User saved = null;
-        Optional<User> oUser = usrUserRepository.findByUsrId(user.getUsrId());
+        Optional<User> oUser = usrUserRepository.findByUsrId(dto.getUsrId());
         if (!oUser.isPresent()) {
-            user.changePw(passwordEncoder.encode(user.getPassword()));
-            saved = usrUserRepository.save(user);
+            saved = usrUserRepository.save(dto.to(passwordEncoder.encode(dto.getUsrPw())));
         } else {
             saved = oUser.get();
         }
