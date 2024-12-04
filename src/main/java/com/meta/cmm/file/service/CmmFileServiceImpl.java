@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CmmFileServiceImpl implements CmmFileService {
     
-    @Value("${oti.pms.upload.path}")
+    @Value("${meta.upload.path}")
     private String storePathString;
 
     public final CmmFileRepository cmmFileRepository;
