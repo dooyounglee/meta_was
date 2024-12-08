@@ -39,7 +39,7 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String usrId; // 사용자ID
     
-    @Column(columnDefinition = "VARCHAR(255) COLLATE \"ko-KR-x-icu\" ")
+    // @Column(columnDefinition = "VARCHAR(255) COLLATE \"ko-KR-x-icu\" ")
     private String usrNm; // 사용자명
     private String usrPw; // 사용자비번
     private String useYn; // 사용여부
@@ -64,6 +64,7 @@ public class UserEntity extends BaseEntity {
             .usrPos(usrPos)
             .usrPhone(usrPhone)
             .usrPhoto(usrPhoto)
+            .roles(roles)
             .build();
     }
 
@@ -78,6 +79,7 @@ public class UserEntity extends BaseEntity {
             .usrPos(user.getUsrPos())
             .usrPhone(user.getUsrPhone())
             .usrPhoto(user.getUsrPhoto())
+            .roles(user.getRoles())
             .build();
     }
 }
