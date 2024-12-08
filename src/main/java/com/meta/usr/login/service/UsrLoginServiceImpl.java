@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.meta.cmm.exception.BusinessException;
 import com.meta.cmm.security.JwtTokenProvider;
 import com.meta.sys.menu.service.port.SysMenuRepository;
+import com.meta.sys.message.controller.port.SysMessageService;
 import com.meta.sys.view.controller.port.SysViewService;
 import com.meta.usr.login.controller.port.UsrLoginService;
 import com.meta.usr.login.controller.request.UsrLoginRequest.UsrLoginLogin;
@@ -37,6 +38,7 @@ public class UsrLoginServiceImpl implements UsrLoginService {
     public final PasswordEncoder passwordEncoder;
     public final SysMenuRepository sysMenuRepository;
     private final SysViewService sysViewService;
+    private final SysMessageService sysMessageService;
     
     public Map<String, Object> signIn(UsrLoginLogin loginDto) {
         log.info("[getSignInResult] signDataHandler 로 회원 정보 요청");
@@ -75,6 +77,7 @@ public class UsrLoginServiceImpl implements UsrLoginService {
             .refreshToken((String) responseMap.get("refreshToken"))
             .build());
         
+        responseMap.put("messages", sysMessageService.all()); // 메시지
         responseMap.put("menus", sysMenuRepository.selectMenuListByUser(user.getUsrNo())); // 메뉴
         responseMap.put("views", sysViewService.selectViewAll()); // 화면
 
