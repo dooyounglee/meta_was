@@ -1,24 +1,25 @@
 package com.meta.sys.message.controller.request;
 
+import com.meta.cmm.dto.SearchDto;
 import com.meta.sys.message.domain.Message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 public class MessageRequest {
     
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
-    public static class MessageSelect {
+    @SuperBuilder
+    public static class MessageSelect extends SearchDto {
         private long msgId;
-        private int offset;
-        private int pageSize;
-        private String searchTyp;
-        private String searchWrd;
+        private String msgCd;
+        private String msgCn;
+        private String delYn;
     }
 
     @Getter
