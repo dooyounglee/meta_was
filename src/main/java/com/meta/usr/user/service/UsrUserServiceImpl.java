@@ -2,6 +2,8 @@ package com.meta.usr.user.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import com.meta.usr.user.service.port.UsrUserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UsrUserServiceImpl implements UsrUserService {
     
