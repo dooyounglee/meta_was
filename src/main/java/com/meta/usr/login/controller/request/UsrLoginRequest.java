@@ -29,36 +29,4 @@ public class UsrLoginRequest {
                 .build();
         }
     }
-
-    @Data
-    @Builder
-    public static class UsrLoginSignup {
-        private String usrId;
-        private String usrNm;
-        private String usrComp;
-        private String usrPos;
-        private String usrPhone;
-
-        public User to() {
-            return User.builder()
-                .usrId(usrId)
-                .usrNm(usrNm)
-                .usrComp(usrComp)
-                .usrPos(usrPos)
-                .usrPhone(usrPhone)
-                .build();
-        }
-    }
-
-    @Data
-    @Builder
-    public static class UsrLoginReset {
-        private long usrNo;
-
-        public User to() {
-            return User.builder()
-                .usrNo(usrNo)
-                .build();
-        }
-    }
 }
